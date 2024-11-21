@@ -1,23 +1,16 @@
 export class Negociacao {
-  private _data: Date;
-  private _valor: number;
-  private _quantidade: number;
+  /* 
+    Typescript auto-detecta que os parametros do construtor serão as variaveis dentro dele.
+    e terão o valor referente ao seu proprio nome (this._data = _data por exemplo)
+    para isso basta explicitar o status do parametro do construtor (public ou private) 
+  */
+  constructor(
+    private readonly data: Date,
+    private readonly valor: number,
+    private readonly quantidade: number
+  ) {}
 
-  constructor(data: Date, valor: number, quantidade: number) {
-    (this._data = data), 
-    (this._valor = valor), 
-    (this._quantidade = quantidade);
-  }
-
-  get data(): Date {
-    return this._data;
-  }
-
-  get valor(): number {
-    return this._valor;
-  }
-
-  get quantidade(): number {
-    return this._quantidade;
+  get volume(): number {
+    return this.quantidade * this.valor;
   }
 }
