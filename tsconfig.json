@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "dist/js",
+    "target": "ESNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "noEmitOnError": true
+  },
+  "include": ["app/**/*"]
+}
