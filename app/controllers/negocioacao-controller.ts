@@ -1,5 +1,6 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negocioacoes.js";
+import { NegociacoesView } from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
   // Setamos as variaveis como privadas apenas desta classe
@@ -7,11 +8,13 @@ export class NegociacaoController {
   private inputQuantidade: HTMLInputElement;
   private inputValor: HTMLInputElement;
   private negociacoes = new Negociacoes();
+  private negociacoesView = new NegociacoesView("#negociacoesView")
 
   constructor() {
     this.inputData = document.querySelector("#data");
     this.inputQuantidade = document.querySelector("#quantidade");
     this.inputValor = document.querySelector("#valor");
+    this.negociacoesView.uptade()
   }
 
   criarNegociacao(): Negociacao {
@@ -26,7 +29,6 @@ export class NegociacaoController {
   adicionarNaLista(): void {
     const negociacao = this.criarNegociacao();
     this.negociacoes.adicionarNegociação(negociacao);
-    console.log(this.negociacoes.lista());
     this.limparForm();
   }
 
