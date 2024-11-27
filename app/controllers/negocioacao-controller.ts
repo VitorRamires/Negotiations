@@ -1,20 +1,22 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negocioacoes.js";
+import { MessageView } from "../views/messageView.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
-  // Setamos as variaveis como privadas apenas desta classe
   private inputData: HTMLInputElement;
   private inputQuantidade: HTMLInputElement;
   private inputValor: HTMLInputElement;
   private negociacoes = new Negociacoes();
-  private negociacoesView = new NegociacoesView("#negociacoesView")
+  private negociacoesView = new NegociacoesView("#negociacoesView");
+  private messageView = new MessageView("#mensagemView");
 
   constructor() {
     this.inputData = document.querySelector("#data");
     this.inputQuantidade = document.querySelector("#quantidade");
     this.inputValor = document.querySelector("#valor");
-    this.negociacoesView.uptade()
+    this.negociacoesView.uptade(this.negociacoes);
+    this.messageView.uptade("Item adicionado com sucesso");
   }
 
   criarNegociacao(): Negociacao {
@@ -29,6 +31,7 @@ export class NegociacaoController {
   adicionarNaLista(): void {
     const negociacao = this.criarNegociacao();
     this.negociacoes.adicionarNegociação(negociacao);
+    this.negociacoesView.uptade(this.negociacoes);
     this.limparForm();
   }
 
@@ -40,8 +43,3 @@ export class NegociacaoController {
     this.inputData.focus();
   }
 }
-
-// PROPRIEDADES DE CLASSE, METODOS DE CONSTRUTOR,
-// FUNÇÃO E RETORNOS DE FUNÇÃO TIPAMOS ( RECOMENDAVEL )
-
-// Evitar ANY para não perder funcionalidades do TS
